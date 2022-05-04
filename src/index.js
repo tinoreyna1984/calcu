@@ -1,15 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+/* eslint-disable no-unused-vars */
+import React from "react";
+import { createRoot } from "react-dom/client"; // ahora se exige en React 18
+import "./index.css";
+import * as bootstrap from 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+import Calculadora from "./Calculadora";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+const root = createRoot(document.getElementById("root"));
+root.render(
+    <Calculadora />
 );
 
 // If you want your app to work offline and load faster, you can change
