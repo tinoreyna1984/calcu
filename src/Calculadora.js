@@ -1,34 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
+import { AboutAlert } from "./components/AboutAlert";
+import { Digit } from "./components/Digit";
+import { Display } from "./components/Display";
+import { Operand } from "./components/Operand";
+import { OtherButtons } from "./components/OtherButtons";
+import { useValues } from "./hooks/useValues";
 
 const Calculadora = () => {
-  const [num1, setNum1] = useState("");
-  const [num2, setNum2] = useState("");
-  const [opeActual, setOpeActual] = useState("");
-  const [resultado, setResultado] = useState(0);
-
-  const [alerta, setAlerta] = useState(false);
+  
+    const [num1,
+    setNum1,
+    num2,
+    setNum2,
+    opeActual,
+    setOpeActual,
+    resultado,
+    setResultado,
+    alerta,
+    setAlerta,] = useValues();
 
   const numero = (digito) => {
-    if (digito === ".") {
-      if (num1.length > 0 || num2.length > 0) {
-        if (opeActual === "") {
-          setNum1(num1 + digito);
-        } else {
-          setNum2(num2 + digito);
-        }
-      } else {
-        if (opeActual === "") {
-          setNum1("0" + digito);
-        } else {
-          setNum2("0" + digito);
-        }
-      }
+    if (opeActual === "") {
+      setNum1(num1 + digito);
     } else {
-      if (opeActual === "") {
-        setNum1(num1 + digito);
-      } else {
-        setNum2(num2 + digito);
-      }
+      setNum2(num2 + digito);
     }
   };
 
@@ -75,219 +70,121 @@ const Calculadora = () => {
 
   return (
     <div className="container-flex border border-light m-3 p-5 shadow-lg rounded">
-      <div className="row m-3 shadow rounded">
-        <div className="text-end p-3 fs-6">
-          {opeActual ? num1 + opeActual : ""}
-        </div>
-        <div className="text-end p-3 fs-2">
-          {resultado ? resultado : !opeActual ? num1 : num2}
-        </div>
-      </div>
+      <Display
+        display1={opeActual ? num1 + opeActual : ""}
+        display2={resultado ? resultado : !opeActual ? num1 : num2}
+      />
       <div className="row btn-toolbar row-cols-3" role="toolbar">
-        <button
-          onClick={() => {
+        <Digit
+          num="7"
+          handleNumber={() => {
             numero(7);
           }}
-          type="button"
-          className="btn btn-outline-dark border-0 shadow"
-        >
-          7
-        </button>
-        <button
-          onClick={() => {
+        />
+        <Digit
+          num="8"
+          handleNumber={() => {
             numero(8);
           }}
-          type="button"
-          className="btn btn-outline-dark border-0 shadow"
-        >
-          8
-        </button>
-        <button
-          onClick={() => {
+        />
+        <Digit
+          num="9"
+          handleNumber={() => {
             numero(9);
           }}
-          type="button"
-          className="btn btn-outline-dark border-0 shadow"
-        >
-          9
-        </button>
+        />
       </div>
       <div className="row btn-toolbar row-cols-3" role="toolbar">
-        <button
-          onClick={() => {
+        <Digit
+          num="4"
+          handleNumber={() => {
             numero(4);
           }}
-          type="button"
-          className="btn btn-outline-dark border-0 shadow"
-        >
-          4
-        </button>
-        <button
-          onClick={() => {
+        />
+        <Digit
+          num="5"
+          handleNumber={() => {
             numero(5);
           }}
-          type="button"
-          className="btn btn-outline-dark border-0 shadow"
-        >
-          5
-        </button>
-        <button
-          onClick={() => {
+        />
+        <Digit
+          num="6"
+          handleNumber={() => {
             numero(6);
           }}
-          type="button"
-          className="btn btn-outline-dark border-0 shadow"
-        >
-          6
-        </button>
+        />
       </div>
       <div className="row btn-toolbar row-cols-3" role="toolbar">
-        <button
-          onClick={() => {
+        <Digit
+          num="1"
+          handleNumber={() => {
             numero(1);
           }}
-          type="button"
-          className="btn btn-outline-dark border-0 shadow"
-        >
-          1
-        </button>
-        <button
-          onClick={() => {
+        />
+        <Digit
+          num="2"
+          handleNumber={() => {
             numero(2);
           }}
-          type="button"
-          className="btn btn-outline-dark border-0 shadow"
-        >
-          2
-        </button>
-        <button
-          onClick={() => {
+        />
+        <Digit
+          num="3"
+          handleNumber={() => {
             numero(3);
           }}
-          type="button"
-          className="btn btn-outline-dark border-0 shadow"
-        >
-          3
-        </button>
+        />
       </div>
       <div className="row btn-toolbar row-cols-3" role="toolbar">
-        <button
-          onClick={() => {
+        <Digit
+          num="0"
+          handleNumber={() => {
             numero(0);
           }}
-          type="button"
-          className="btn btn-outline-dark border-0 shadow"
-        >
-          0
-        </button>
-        <button
-          onClick={() => {
+        />
+        <Operand
+          op="+"
+          handleOp={() => {
             operacion("+");
           }}
-          type="button"
-          className="btn btn-outline-dark border-0 shadow"
-        >
-          +
-        </button>
-        <button
-          onClick={() => {
+        />
+        <Operand
+          op="-"
+          handleOp={() => {
             operacion("-");
           }}
-          type="button"
-          className="btn btn-outline-dark border-0 shadow"
-        >
-          -
-        </button>
+        />
       </div>
       <div className="row btn-toolbar row-cols-3" role="toolbar">
-        <button
-          onClick={() => {
+        <Operand
+          op="*"
+          handleOp={() => {
             operacion("*");
           }}
-          type="button"
-          className="btn btn-outline-dark border-0 shadow"
-        >
-          *
-        </button>
-        <button
-          onClick={() => {
+        />
+        <Operand
+          op="/"
+          handleOp={() => {
             operacion("/");
           }}
-          type="button"
-          className="btn btn-outline-dark border-0 shadow"
-        >
-          /
-        </button>
-        <button
-          onClick={() => {
+        />
+        <Operand
+          op="="
+          handleOp={() => {
             res();
           }}
-          type="button"
-          className="btn btn-outline-dark border-0 shadow"
-        >
-          =
-        </button>
+        />
       </div>
       <div className="row btn-toolbar row-cols-3" role="toolbar">
-        <button
-          onClick={() => {
+        <Digit
+          num="."
+          handleNumber={() => {
             numero(".");
           }}
-          type="button"
-          className="btn btn-outline-dark border-0 shadow"
-        >
-          .
-        </button>
-        <button
-          onClick={reset}
-          type="button"
-          className="btn btn-outline-dark border-0 shadow"
-        >
-          RESET
-        </button>
-        <button
-          onClick={acerca}
-          type="button"
-          className="btn btn-outline-dark border-0 shadow"
-        >
-          ABOUT
-        </button>
+        />
+        <OtherButtons caption="RESET" handleClick={reset} />
+        <OtherButtons caption="ABOUT" handleClick={acerca} />
       </div>
-      {!alerta ? (
-        ""
-      ) : (
-        <div
-          className="alert mt-3 alert-light shadow alert-dismissible fade show"
-          role="alert"
-        >
-          <div>
-            Hecho por{" "}
-            <a
-              className="text-decoration-none"
-              href="https://tinexlab.com/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Tino Reyna
-            </a>
-            <br/>
-            <a
-              className="btn btn-dark"
-              href="https://github.com/tinoreyna1984/calcu"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub Repo
-            </a>
-          </div>
-          <button
-            type="button"
-            className="btn-close"
-            data-bs-dismiss="alert"
-            onClick={acerca}
-          ></button>
-        </div>
-      )}
+      {!alerta ? "" : <AboutAlert handleAlert={acerca} />}
     </div>
   );
 };
