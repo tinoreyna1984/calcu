@@ -271,7 +271,14 @@ const Calculadora = () => {
               Tino Reyna
             </a>
             .{" "}
-            <a className="btn btn-dark" href="#" target='_blank' ref='noreferrer'>GitHub Repo</a>
+            <a
+              className="btn btn-dark"
+              href="https://github.com/tinoreyna1984/calcu"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub Repo
+            </a>
           </div>
           <button
             type="button"
