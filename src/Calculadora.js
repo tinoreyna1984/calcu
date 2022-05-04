@@ -270,7 +270,7 @@ const Calculadora = () => {
             >
               Tino Reyna
             </a>
-            .{" "}
+            <br/>
             <a
               className="btn btn-dark"
               href="https://github.com/tinoreyna1984/calcu"
